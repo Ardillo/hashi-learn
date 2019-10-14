@@ -9,3 +9,9 @@ unzip -o consul.zip
 mv consul /usr/local/bin/consul
 
 mkdir -p /etc/consul.d
+
+echo "Installing systemd unit files"
+svc_file=/opt/consul/consul.service
+if [ -f ${svc_file} ]; then
+  cp ${svc_file} /etc/systemd/system/
+fi

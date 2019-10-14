@@ -8,4 +8,21 @@ curl -sSL https://releases.hashicorp.com/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VE
 unzip nomad.zip
 mv nomad /usr/local/bin/nomad
 
-mkdir -p /etc/nomad.d
+sudo mkdir -p /etc/nomad.d
+sudo chmod a+w /etc/nomad.d
+
+echo "Installing systemd unit files"
+sysd_file=/opt/nomad/nomad.service
+if [ -f ${sysd_file} ]; then
+  cp ${sysd_file} /etc/systemd/system/
+else
+  echo "ERROR : ${sysd_file} not found"
+fi
+
+echo "Copy Nomad config file"
+nomad_file=/opt/nomad/config.json
+if [ -f ${nomad_file} ]; then
+  cp ${nomad_file} /etc/nomad.d/
+else
+  echo "ERROR : ${nomad_file} not found"
+fi
