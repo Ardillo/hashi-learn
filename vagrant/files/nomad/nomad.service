@@ -5,7 +5,7 @@ After=network.target
 
 [Service]
 Environment="GOMAXPROCS=2" "PATH=/usr/local/bin:/usr/bin:/bin"
-ExecStart=/usr/local/bin/nomad agent -config=/etc/nomad.d/config.json
+ExecStart=/usr/local/bin/nomad agent -dev -bind=0.0.0.0
 ExecReload=/bin/kill -HUP $MAINPID
 KillSignal=TERM
 User=root
