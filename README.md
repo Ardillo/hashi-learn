@@ -52,7 +52,7 @@ nomad job plan example.nomad
 nomad job run -check-index <nr> example.nomad
 ```
 
-Eexample nomad job:
+Example nomad job:
 ```json 
 job "example" {
   datacenters = ["dc1"]
