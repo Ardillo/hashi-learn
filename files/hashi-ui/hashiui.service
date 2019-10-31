@@ -1,0 +1,14 @@
+[Unit]
+Description=hashi-ui
+Requires=nomad.service consul.service
+After=network.target
+
+[Service]
+Environment="PATH=/usr/local/bin:/usr/bin:/bin"
+ExecStart=/usr/local/bin/hashi-ui --nomad-enable --consul-enable
+ExecReload=/bin/kill -HUP $MAINPID
+KillSignal=TERM
+User=root
+
+[Install]
+WantedBy=multi-user.target

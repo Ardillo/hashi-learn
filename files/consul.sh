@@ -8,10 +8,18 @@ curl -sSL https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSU
 unzip -o consul.zip
 mv consul /usr/local/bin/consul
 
+consul -autocomplete-install
+
 mkdir -p /etc/consul.d
 
 echo "Installing systemd unit files"
-svc_file=/opt/consul/consul.service
-if [ -f ${svc_file} ]; then
-  cp ${svc_file} /etc/systemd/system/
+sysd_file=/opt/consul/consul.service
+if [ -f ${sysd_file} ]; then
+  cp ${sysd_file} /etc/systemd/system/
+else
+  echo "ERROR : ${sysd_file} not found"
 fi
+
+# start consul service
+systemctl start consul
+systemctl enable consul

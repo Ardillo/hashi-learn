@@ -67,23 +67,30 @@ Vagrant.configure("2") do |config|
   #   apt-get update
   #   apt-get install -y apache2
   # SHELL
-  config.vm.define "server" do |server|
-    server.vm.hostname = "server01.example.lan"
-    server.vm.network "private_network", ip: "10.0.0.100"
+  config.vm.define "server" do |srv|
+    srv.vm.hostname = "server01.example.lan"
+    srv.vm.network "private_network", ip: "10.0.0.100"
 
-    server.vm.network "forwarded_port", guest: 4646, host: 8888 
-    server.vm.provision "shell", path: "files/base.sh"
-    server.vm.provision "shell", path: "files/docker.sh"
+    srv.vm.network "forwarded_port", guest: 4646, host: 8888 
+    srv.vm.network "forwarded_port", guest: 3000, host: 8889 
+    srv.vm.provision "shell", path: "files/base.sh"
+    srv.vm.provision "shell", path: "files/docker.sh"
 
-    server.vm.synced_folder "./files/consul/", "/opt/consul"
-    server.vm.provision "shell", path: "files/consul.sh"
+    srv.vm.synced_folder "./files/consul/", "/opt/consul"
+    srv.vm.provision "shell", path: "files/consul.sh"
 
-    server.vm.synced_folder "./files/nomad/", "/opt/nomad"
-    server.vm.provision "shell", path: "files/nomad.sh"
+    srv.vm.synced_folder "./files/nomad/", "/opt/nomad"
+    srv.vm.provision "shell", path: "files/nomad.sh"
+    
+    srv.vm.synced_folder "./files/vault/", "/opt/vault"
+    srv.vm.provision "shell", path: "files/vault.sh"
+ 
+    srv.vm.synced_folder "./files/hashi-ui/", "/opt/hashi-ui"
+    srv.vm.provision "shell", path: "files/hashi-ui.sh"
   end
   
-  config.vm.define "client" do |client|
-    client.vm.hostname = "client01.example.lan"
-    client.vm.network "private_network", ip: "10.0.0.200"
-  end
+#  config.vm.define "client" do |client|
+#    client.vm.hostname = "client01.example.lan"
+#    client.vm.network "private_network", ip: "10.0.0.200"
+#  end
 end

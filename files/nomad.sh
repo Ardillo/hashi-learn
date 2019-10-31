@@ -8,6 +8,8 @@ curl -sSL https://releases.hashicorp.com/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VE
 unzip nomad.zip
 mv nomad /usr/local/bin/nomad
 
+nomad -autocomplete-install
+
 sudo mkdir -p /etc/nomad.d
 sudo chmod a+w /etc/nomad.d
 
@@ -26,3 +28,8 @@ if [ -f ${nomad_file} ]; then
 else
   echo "ERROR : ${nomad_file} not found"
 fi
+
+# start nomad service
+systemctl start nomad
+systemctl enable nomad
+

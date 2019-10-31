@@ -114,13 +114,18 @@ job "example" {
 }
 ```
 
+## Vault
+
+ * TODO
+ hier nog iets over kv stores en listen en printen enzo
 
 
+ * TODO iets met tokens en shit. als ENV variable... ff kijken hoe we dat doen.
+Root Token: s.js2g1eMxXlAM50sV80DKTd3C
+ * ``journalctl -u vault.service`` geeft mogelijkheden met grep
 
-# TODO
-
- * Make unit files to start the Consul,Nomad,etc sesrvices with systemctl
-
+## Hashi-UI
+ * werkt ook, unit file aangemaakt
 
 
 
