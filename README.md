@@ -125,22 +125,43 @@ There are multiple ways of storing information in Vault. The easiest most straig
 To put information in the Vault
 ``` bash
 vault kv put secret/hello foo=world
+#Key              Value
+#---              -----
+#created_time     2019-11-01T07:09:45.130719984Z
+#deletion_time    n/a
+#destroyed        false
+#version          1
 ```
 This will create a key-value pair of ``foo=world`` in a path located at ``secret/hello``.
 
 To get information from Vault you need the path of the information you want to retrieve.
 ```bash
 vault kv list secret
-
+#Keys
+#----
+#hello
 ```
 Then the secret information can be retreived by
 ```bash
-vault kv get /secret/hello
+vault kv get secret/hello
+#====== Metadata ======
+#Key              Value
+#---              -----
+#created_time     2019-11-01T07:09:45.130719984Z
+#deletion_time    n/a
+#destroyed        false
+#version          1
+#
+#=== Data ===
+#Key    Value
+#---    -----
+#foo    world
 ```
 
 Vault needs an environment variable in order to authenticate commands against the running Vault service.
 The variable is stored as ``VAULT_DEV_ROOT_TOKEN_ID``. Since the Vault service is started with the system during boot the cli is already authenticated.
 If by any event you need that token it can be found in the systemctl logging framework journalctl.
+
 ```bash
 journalctl -u vault.service | grep Token
 ```
