@@ -116,16 +116,38 @@ job "example" {
 
 ## Vault
 
- * TODO
- hier nog iets over kv stores en listen en printen enzo
+Vault can run on itself. To check if it is running
+``` bash
+vault status
+```
 
+There are multiple ways of storing information in Vault. The easiest most straightforward way is the use of a key-value store.
+To put information in the Vault
+``` bash
+vault kv put secret/hello foo=world
+```
+This will create a key-value pair of ``foo=world`` in a path located at ``secret/hello``.
 
- * TODO iets met tokens en shit. als ENV variable... ff kijken hoe we dat doen.
-Root Token: s.js2g1eMxXlAM50sV80DKTd3C
- * ``journalctl -u vault.service`` geeft mogelijkheden met grep
+To get information from Vault you need the path of the information you want to retrieve.
+```bash
+vault kv list secret
+
+```
+Then the secret information can be retreived by
+```bash
+vault kv get /secret/hello
+```
+
+Vault needs an environment variable in order to authenticate commands against the running Vault service.
+The variable is stored as ``VAULT_DEV_ROOT_TOKEN_ID``. Since the Vault service is started with the system during boot the cli is already authenticated.
+If by any event you need that token it can be found in the systemctl logging framework journalctl.
+```bash
+journalctl -u vault.service | grep Token
+```
 
 ## Hashi-UI
- * werkt ook, unit file aangemaakt
-
+The Hashi-UI interface is slightly more sophisticated than the default webinterface of Nomad. In addition Consul can also be accessed by Hashi-UI. 
+The Hashi-UI interface is running by default on port ``3000``. 
+For the Vagrant setup, port ``localhost:8888`` gives access to the Nomad interface, and ``localhost:8889`` gives access to the Hashi-UI interface.
 
 
