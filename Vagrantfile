@@ -52,7 +52,7 @@ Vagrant.configure("2") do |config|
   #
   config.vm.provider "virtualbox" do |vb|
     # Display the VirtualBox GUI when booting the machine
-    vb.linked_clone = true
+    #vb.linked_clone = true
     vb.memory = 2048
     vb.cpus = 2
   end
