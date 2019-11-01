@@ -148,6 +148,8 @@ journalctl -u vault.service | grep Token
 ## Hashi-UI
 The Hashi-UI interface is slightly more sophisticated than the default webinterface of Nomad. In addition Consul can also be accessed by Hashi-UI. 
 The Hashi-UI interface is running by default on port ``3000``. 
-For the Vagrant setup, port ``localhost:8888`` gives access to the Nomad interface, and ``localhost:8889`` gives access to the Hashi-UI interface.
+For the Vagrant setup:
+ * ``localhost:8888`` gives access to the Nomad interface, and;
+ * ``localhost:8889`` gives access to the Hashi-UI interface.
 
 
