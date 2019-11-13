@@ -1,17 +1,18 @@
 #!/bin/bash
 
 echo "Executing base script"
+apt-get update
 
 echo "installing unzip"
-apt install -y unzip
+apt-get install -y unzip
 
 echo "installing tmux"
-apt install -y tmux
+apt-get install -y tmux
 
 echo "installing curl"
-apt install -y curl
+apt-get install -y curl
 
 echo "installing vim"
-apt install -y vim
+apt-get install -y vim
 
 

@@ -22,7 +22,7 @@ else
 fi
 
 echo "Copy Nomad config file"
-nomad_file=/opt/nomad/config.json
+nomad_file=/opt/nomad/config.hcl
 if [ -f ${nomad_file} ]; then
   cp ${nomad_file} /etc/nomad.d/
 else

@@ -20,6 +20,10 @@ else
   echo "ERROR : ${sysd_file} not found"
 fi
 
+if [[ -f /opt/vault/config.hcl ]]; then
+  cp /opt/vault/config.hcl /etc/vault.d/
+fi
+
 #start vault service
 systemctl start vault
 systemctl enable vault

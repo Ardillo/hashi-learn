@@ -71,8 +71,10 @@ Vagrant.configure("2") do |config|
     srv.vm.hostname = "server01.example.lan"
     srv.vm.network "private_network", ip: "10.0.0.100"
 
-    srv.vm.network "forwarded_port", guest: 4646, host: 8888 
-    srv.vm.network "forwarded_port", guest: 3000, host: 8889 
+    srv.vm.network "forwarded_port", guest: 3000, host: 3000
+    srv.vm.network "forwarded_port", guest: 4646, host: 4646
+    srv.vm.network "forwarded_port", guest: 8201, host: 8201
+    srv.vm.network "forwarded_port", guest: 8500, guest_ip: "localhost", host: 8500
     srv.vm.provision "shell", path: "files/base.sh"
     srv.vm.provision "shell", path: "files/docker.sh"
 
@@ -81,14 +83,14 @@ Vagrant.configure("2") do |config|
 
     srv.vm.synced_folder "./files/nomad/", "/opt/nomad"
     srv.vm.provision "shell", path: "files/nomad.sh"
-    
+
     srv.vm.synced_folder "./files/vault/", "/opt/vault"
     srv.vm.provision "shell", path: "files/vault.sh"
- 
+
     srv.vm.synced_folder "./files/hashi-ui/", "/opt/hashi-ui"
     srv.vm.provision "shell", path: "files/hashi-ui.sh"
   end
-  
+
 #  config.vm.define "client" do |client|
 #    client.vm.hostname = "client01.example.lan"
 #    client.vm.network "private_network", ip: "10.0.0.200"
