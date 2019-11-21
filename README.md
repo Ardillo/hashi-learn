@@ -171,7 +171,7 @@ The Hashi-UI interface is slightly more sophisticated than the default webinterf
 The Hashi-UI interface is running by default on port ``3000``. 
 For the Vagrant setup:
 
- * The Nomad interface can be accessed on: ``localhost:8888``;
- * The Hashi-UI interface can be accessed on: ``localhost:8889``.
-
+ * The Nomad interface can be accessed on: ``localhost:4646``;
+ * The Hashi-UI interface can be accessed on: ``localhost:3000``;
+ * The Vault interface can be accessed on: ``localhost:8201``;
 
